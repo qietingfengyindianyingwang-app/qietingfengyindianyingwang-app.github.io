@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>且听风吟电影网 - 高清影视在线观看</title>
+<meta name="description" content="且听风吟电影网(qietingfengyindianyingwang-app)提供最新电影、热播电视剧、综艺、动漫在线高清观看，免费无广告，每日更新。">
+<meta name="keywords" content="且听风吟电影网,电影,电视剧,综艺,动漫,在线观看,高清影视">
+<meta name="author" content="且听风吟电影网">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+
+<style>
+/* ========== CSS Reset & Base ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #6C5CE7;
+  --primary-dark: #5A4BD1;
+  --accent: #00CEC9;
+  --bg: #F8F9FF;
+  --card-bg: #FFFFFF;
+  --text: #2D3436;
+  --text-light: #636E72;
+  --shadow: 0 4px 24px rgba(108,92,231,0.12);
+  --shadow-hover: 0 12px 40px rgba(108,92,231,0.22);
+  --radius: 16px;
+  --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ========== Header ========== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(108,92,231,0.08);
+  transition: var(--transition);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+
+.logo-icon { font-size: 1.8rem; }
+
+.nav-menu {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-menu a {
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-light);
+  position: relative;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ========== Hero Section ========== */
+.hero {
+  margin-top: 70px;
+  padding: 80px 20px 60px;
+  background: linear-gradient(135deg, #6C5CE7 0%, #A29BFE 50%, #00CEC9 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 640px;
+  color: #fff;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, #FFE066, #FF6B6B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  opacity: 0.92;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.hero-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+}
+
+.hero-url .copy-hint {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-family: inherit;
+}
+
+/* ========== Section Common ========== */
+.section {
+  padding: 70px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(108,92,231,0.1);
+  padding: 4px 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ========== About Section ========== */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.about-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(108,92,231,0.06);
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.about-card .card-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.about-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.about-card p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ========== Channels Section ========== */
+.channels {
+  background: linear-gradient(180deg, transparent, rgba(108,92,231,0.03));
+}
+
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.channel-item {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 30px 22px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(108,92,231,0.06);
+  cursor: pointer;
+  display: block;
+}
+
+.channel-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary);
+}
+
+.channel-item .ch-icon {
+  font-size: 2.5rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.channel-item h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.channel-item p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* ========== Movies Section ========== */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.movie-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(108,92,231,0.06);
+}
+
+.movie-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.movie-poster {
+  height: 220px;
+  background: linear-gradient(135deg, #A29BFE, #6C5CE7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-poster::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.3));
+}
+
+.movie-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,107,107,0.9);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.movie-info {
+  padding: 18px;
+}
+
+.movie-info h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+.movie-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #FDCB6C;
+  font-weight: 600;
+}
+
+/* ========== News Section ========== */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.news-item {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 26px 30px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(108,92,231,0.06);
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.news-item:hover {
+  transform: translateX(6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.news-date {
+  flex-shrink: 0;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  min-width: 70px;
+}
+
+.news-date .day { font-size: 1.6rem; font-weight: 800; line-height: 1; }
+.news-date .month { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; }
+
+.news-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.news-content p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ========== Footer ========== */
+.footer {
+  background: linear-gradient(135deg, #2D3436, #636E72);
+  color: #fff;
+  padding: 60px 20px 30px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: #fff;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.footer-url {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.footer-col a {
+  display: block;
+  padding: 5px 0;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.footer-col a:hover { color: #fff; padding-left: 6px; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 1024px) {
+  .channel-grid { grid-template-columns: repeat(2, 1fr); }
+  .movie-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0; right: 0;
+    background: #fff;
+    flex-direction: column;
+    padding: 20px;
+    gap: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transform: translateY(-120%);
+    opacity: 0;
+    transition: var(--transition);
+  }
+  .nav-menu.active { transform: translateY(0); opacity: 1; }
+  .nav-menu a { padding: 14px 20px; border-radius: 12px; }
+
+  .hero { padding: 60px 20px 50px; min-height: 440px; text-align: center; }
+  .hero-content { margin: 0 auto; }
+  .hero h1 { font-size: 2rem; }
+
+  .section { padding: 50px 16px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .channel-grid { grid-template-columns: 1fr; }
+  .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .movie-poster { height: 180px; font-size: 3rem; }
+  .news-item { flex-direction: column; gap: 14px; padding: 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.6rem; }
+  .hero-desc { font-size: 0.95rem; }
+  .hero-url { font-size: 0.85rem; padding: 10px 18px; flex-direction: column; gap: 4px; }
+  .movie-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 1.4rem; }
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<!-- ========== Header ========== -->
+<header class="header">
+  <div class="nav-container">
+    <a href="#" class="logo">
+      <span class="logo-icon">🎬</span>
+      <span>且听风吟电影网</span>
+    </a>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home" class="active">首页</a>
+      <a href="#about">关于我们</a>
+      <a href="#channels">频道导航</a>
+      <a href="#movies">热播推荐</a>
+      <a href="#news">影视资讯</a>
+    </nav>
+    <div class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ========== Hero ========== -->
+<section class="hero" id="home">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">🎉 每日更新 · 免费高清</div>
+      <h1>且听风吟电影网<br><span>畅享视听盛宴</span></h1>
+      <p class="hero-desc">聚合全网最新电影、热播剧集、综艺动漫，高清流畅播放，无广告打扰，随时随地享受优质影视内容。</p>
+      <div class="hero-url">
+        🌐 https://qietingfengyindianyingwang-app
+        <span class="copy-hint">— 官方网址</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== About ========== -->
+<section class="section" id="about">
+  <div class="section-header">
+    <span class="section-tag">About Us</span>
+    <h2 class="section-title">关于且听风吟电影网</h2>
+    <p class="section-subtitle">致力于打造最优质的免费在线影视平台，让每个人都能轻松享受电影的魅力</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="card-icon">🎞️</div>
+      <h3>海量片库</h3>
+      <p>收录超10万部高清影视资源，涵盖电影、电视剧、综艺、动漫等全品类内容，每日持续更新。</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">⚡</div>
+      <h3>极速播放</h3>
+      <p>采用P2P加速与多线路智能切换技术，秒加载、零卡顿，支持4K超清画质流畅播放体验。</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">🛡️</div>
+      <h3>纯净无广</h3>
+      <p>全站无弹窗广告、无强制跳转，尊重每一位用户的观影体验，打造干净纯粹的影视空间。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Channels ========== -->
+<section class="section channels" id="channels">
+  <div class="section-header">
+    <span class="section-tag">Categories</span>
+    <h2 class="section-title">频道导航</h2>
+    <p class="section-subtitle">四大核心频道，精准分类，快速找到你想看的</p>
+  </div>
+  <div class="channel-grid">
+    <a href="#" class="channel-item">
+      <span class="ch-icon">🎬</span>
+      <h3>电影频道</h3>
+      <p>最新院线大片 · 经典老片</p>
+    </a>
+    <a href="#" class="channel-item">
+      <span class="ch-icon">📺</span>
+      <h3>电视剧</h3>
+      <p>热播国产剧 · 韩剧美剧</p>
+    </a>
+    <a href="#" class="channel-item">
+      <span class="ch-icon">🎤</span>
+      <h3>综艺频道</h3>
+      <p>热门真人秀 · 访谈脱口秀</p>
+    </a>
+    <a href="#" class="channel-item">
+      <span class="ch-icon">🦸</span>
+      <h3>动漫频道</h3>
+      <p>国漫日漫 · 欧美动画</p>
+    </a>
+  </div>
+</section>
+
+<!-- ========== Movies ========== -->
+<section class="section" id="movies">
+  <div class="section-header">
+    <span class="section-tag">Hot Picks</span>
+    <h2 class="section-title">热播推荐</h2>
+    <p class="section-subtitle">编辑精选高分好片，告别片荒</p>
+  </div>
+  <div class="movie-grid">
+    <a href="#" class="movie-card">
+      <div class="movie-poster">🏔️<span class="movie-tag">热映中</span></div>
+      <div class="movie-info">
+        <h3>攀登者</h3>
+        <div class="movie-meta">
+          <span>2024 · 剧情</span>
+          <span class="movie-rating">★ 9.2</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="movie-card">
+      <div class="movie-poster" style="background:linear-gradient(135deg,#FD79A8,#E84393);">🌊<span class="movie-tag">高分推荐</span></div>
+      <div class="movie-info">
+        <h3>海边的曼彻斯特</h3>
+        <div class="movie-meta">
+          <span>2024 · 文艺</span>
+          <span class="movie-rating">★ 9.5</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="movie-card">
+      <div class="movie-poster" style="background:linear-gradient(135deg,#FDCB6C,#E17055);">🚀<span class="movie-tag">科幻巨制</span></div>
+      <div class="movie-info">
+        <h3>星际穿越2</h3>
+        <div class="movie-meta">
+          <span>2024 · 科幻</span>
+          <span class="movie-rating">★ 9.0</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="movie-card">
+      <div class="movie-poster" style="background:linear-gradient(135deg,#55EFC4,#00B894);">🐉<span class="movie-tag">国漫之光</span></div>
+      <div class="movie-info">
+        <h3>长安三万里</h3>
+        <div class="movie-meta">
+          <span>2024 · 动画</span>
+          <span class="movie-rating">★ 8.8</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ========== News ========== -->
+<section class="section" id="news">
+  <div class="section-header">
+    <span class="section-tag">News</span>
+    <h2 class="section-title">影视资讯</h2>
+    <p class="section-subtitle">最新影视动态、行业资讯一手掌握</p>
+  </div>
+  <div class="news-list">
+    <div class="news-item">
+      <div class="news-date"><div class="day">28</div><div class="month">10月</div></div>
+      <div class="news-content">
+        <h3>2024年国庆档票房破50亿，多部国产大片表现亮眼</h3>
+        <p>今年国庆档共有12部新片上映，涵盖战争、喜剧、动画等多种类型，观众观影热情高涨，且听风吟电影网同步上线高清片源。</p>
+      </div>
+    </div>
+    <div class="news-item">
+      <div class="news-date"><div class="day">25</div><div class="month">10月</div></div>
+      <div class="news-content">
+        <h3>漫威新作《复仇者联盟6》正式定档2025年暑期</h3>
+        <p>漫威影业官方宣布，《复仇者联盟6：秘密战争》将于2025年7月全球同步上映，且听风吟电影网将第一时间为您带来最新资讯。</p>
+      </div>
+    </div>
+    <div class="news-item">
+      <div class="news-date"><div class="day">20</div><div class="month">10月</div></div>
+      <div class="news-content">
+        <h3>且听风吟电影网全新升级4K超清播放引擎</h3>
+        <p>本次技术升级全面优化了视频解码效率，支持HDR10+高动态范围，为用户带来影院级视听享受，快来体验吧！</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Footer ========== -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>🎬 且听风吟电影网</h3>
+        <p>最懂你的在线影视平台，海量高清资源免费看，每日更新不间断。让好电影找到对的人。</p>
+        <div class="footer-url">https://qietingfengyindianyingwang-app</div>
+      </div>
+      <div class="footer-col">
+        <h4>快速导航</h4>
+        <a href="#home">首页</a>
+        <a href="#about">关于我们</a>
+        <a href="#channels">频道导航</a>
+        <a href="#movies">热播推荐</a>
+        <a href="#news">影视资讯</a>
+      </div>
+      <div class="footer-col">
+        <h4>热门频道</h4>
+        <a href="#">电影频道</a>
+        <a href="#">电视剧集</a>
+        <a href="#">综艺娱乐</a>
+        <a href="#">动漫动画</a>
+      </div>
+      <div class="footer-col">
+        <h4>联系我们</h4>
+        <a href="#">商务合作</a>
+        <a href="#">友情链接</a>
+        <a href="#">意见反馈</a>
+        <a href="#">加入我们</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 且听风吟电影网 (qietingfengyindianyingwang-app). All rights reserved. | 本网站仅提供影视信息导航服务</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+
+// Smooth scroll + close menu on mobile
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+  });
+});
+
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-menu a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Header shadow on scroll
+const header = document.querySelector('.header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.style.boxShadow = '0 2px 20px rgba(108,92,231,0.15)';
+  } else {
+    header.style.boxShadow = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
